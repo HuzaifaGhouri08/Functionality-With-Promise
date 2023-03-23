@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Practise</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+  </head>
+  <body>
+    <input id="myInput" type="text" />
+    <button id="myButton" style="display: none">Submit</button>
+  </body>
+  <script>
+    // Get the elements by id
+    const myInput = document.getElementById('myInput');
+    const myButton = document.getElementById('myButton');
+
+    // function returns a promise
+    function checkInputValue() {
+      return new Promise((resolve, reject) => {
+        // If the input value is empty, resolve the promise
+        if (myInput.value == '') {
+          resolve();
+        } else {
+          // If the input value is not empty, reject the promise
+          reject();
+        }
+      });
+    }
+
+    // Add an event listener to the input field
+    myInput.addEventListener('input', () => {
+      checkInputValue()
+        .then(() => {
+          myButton.style.display = 'none';
+        })
+        .catch(() => {
+          myButton.style.display = 'block';
+        });
+    });
+
+    // Add an event listener to the button
+    myButton.addEventListener('click', () => {
+      console.log('Button clicked!');
+    });
+  </script>
+</html>
